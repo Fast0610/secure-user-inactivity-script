@@ -1,0 +1,75 @@
+/*Add this to your existing css styles*/
+
+/*START OF INACTIVITY STYLING*/
+
+body.warning-active {
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.inactivity-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483599;
+  background: rgba(0, 0, 0, 0.90);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: system-ui, sans-serif;
+  pointer-events: auto;
+}
+
+.inactivity-modal {
+  background: #333333;
+  color: #ffffff;
+  padding: 20px 30px;
+  border-radius: 4px;
+  text-align: center;
+  max-width: 420px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+.inactivity-title {
+  font-weight: bold;
+  margin: 0 0 16px;
+  font-size: 20px;
+  letter-spacing: 1;
+  color: #FFFFFF;
+}
+
+.inactivity-text {
+  margin: 0 0 24px;
+  font-size: 16px;
+  line-height: 1.8;
+  text-transform: lowercase;
+}
+
+.inactivity-text span {
+  color: yellow;
+  font-weight: bold;
+  font-family: monospace;
+}
+
+.stay-button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background: yellow;
+  color: #333333;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.stay-button:hover {
+  background: green;
+  color: white;
+  transform: translateY(-1px);
+}
+
+.stay-button:active {
+  transform: translateY(0);
+}
+
+/*END OF INACTIVITY STYLING*/
