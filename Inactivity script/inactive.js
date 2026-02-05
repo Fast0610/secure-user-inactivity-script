@@ -1,5 +1,5 @@
-// inactivity.js
-// Detects user inactivity → shows warning → forces full session destruction via AJAX
+// inactive.js
+// Detects user inactivity → shows warning → forces user out
 // Bulletproof timestamp-based approach (works even when tab is hidden)
 
 // ──────────────────────────────────────────────────────────────────────────────
@@ -60,7 +60,7 @@ function startInactivityChecker() {
         }
 
         if (elapsed >= WARNING_LIMIT) {
-            forceLogout();
+            forceUserOut();
         }
     }, 1000);
 }
@@ -130,7 +130,7 @@ function cleanupWarning() {
 // ──────────────────────────────────────────────────────────────────────────────
 // LOGOUT TECHNIQUE
 // ──────────────────────────────────────────────────────────────────────────────
-async function forceLogout() {
+async function forceUserOut() {
     if (logoutTriggered) return;
     logoutTriggered = true;
 
@@ -144,3 +144,8 @@ async function forceLogout() {
 document.readyState === 'loading'
     ? document.addEventListener('DOMContentLoaded', startInactivityChecker)
     : startInactivityChecker();
+
+
+// ──────────────────────────────────────────────────────────────────────────────
+// END OF SCRIPT - Thank you!
+// ──────────────────────────────────────────────────────────────────────────────
