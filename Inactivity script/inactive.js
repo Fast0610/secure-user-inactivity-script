@@ -69,6 +69,8 @@ function startInactivityChecker() {
 // WARNING UI
 // ──────────────────────────────────────────────────────────────────────────────
 function showWarning() {
+    if (warningActive) return;
+    
     warningActive = true;
     document.body.classList.add('warning-active');
 
@@ -128,15 +130,31 @@ function cleanupWarning() {
 }
 
 // ──────────────────────────────────────────────────────────────────────────────
-// LOGOUT TECHNIQUE
+// LOGOUT
 // ──────────────────────────────────────────────────────────────────────────────
-async function forceUserOut() {
+function forceUserOut() {
     if (logoutTriggered) return;
     logoutTriggered = true;
 
-    // Your signout technique here
+    // Your signout logic here
     location.reload();
 }
+
+// ──────────────────────────────────────────────────────────────────────────────
+// VISIBILITY STATE
+// ──────────────────────────────────────────────────────────────────────────────
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') {
+    // alert("Now visible");
+    const elapsed = Date.now() - lastActivityTime;
+
+    if (elapsed >= WARNING_LIMIT) {
+      location.reload();
+    } else if (elapsed >= INACTIVITY_LIMIT) {
+      showWarning();
+    }
+  }
+});
 
 // ──────────────────────────────────────────────────────────────────────────────
 // INIT
@@ -144,7 +162,6 @@ async function forceUserOut() {
 document.readyState === 'loading'
     ? document.addEventListener('DOMContentLoaded', startInactivityChecker)
     : startInactivityChecker();
-
 
 // ──────────────────────────────────────────────────────────────────────────────
 // END OF SCRIPT - Thank you!
